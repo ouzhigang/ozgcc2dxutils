@@ -1,6 +1,7 @@
 //
 //  OzgCCUtils.h
-//  ozgccs
+//
+//  大部分为常用的静态方法
 //
 //  Created by 欧 志刚 on 13-4-2.
 //
