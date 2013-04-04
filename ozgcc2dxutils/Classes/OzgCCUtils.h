@@ -22,6 +22,9 @@ class OzgCCUtils
     
 public:
     
+    //draw实心圆,参数为：中心点，半径，线段数（越大锯齿就越少），颜色
+    static void ccDrawSolidCircle(const CCPoint& center, float radius, unsigned int segments, ccColor4F color);
+    
     static void clearAnimate(const char *plist); //清空plist生成的帧动画
     static CCAnimate* createAnimate(const char *plist); //利用plist生成帧动画，plist结构在实现文件里面
     
