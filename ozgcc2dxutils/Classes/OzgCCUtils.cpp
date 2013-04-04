@@ -8,7 +8,7 @@
 
 #include "OzgCCUtils.h"
 
-void ccDrawSolidCircle(const CCPoint& center, float radius, unsigned int segments, ccColor4F color)
+void OzgCCUtils::ccDrawSolidCircle(const CCPoint& center, float radius, unsigned int segments, ccColor4F color)
 {
     const float coef = 2.0f * (float)M_PI / segments;
     CCPoint *vertices = (CCPoint*)calloc(segments + 1, sizeof(CCPoint));
