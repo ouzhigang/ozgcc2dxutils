@@ -10,6 +10,9 @@
 #define  _APP_DELEGATE_H_
 
 #include "CCApplication.h"
+#include "cocos2d.h"
+#include "HelloWorldScene.h"
+#include "OzgDragObjScene.h"
 
 /**
 @brief    The cocos2d Application.
