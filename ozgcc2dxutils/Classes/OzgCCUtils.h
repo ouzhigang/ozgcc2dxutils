@@ -28,6 +28,8 @@ public:
     static void clearAnimate(const char *plist); //清空plist生成的帧动画
     static CCAnimate* createAnimate(const char *plist); //利用plist生成帧动画，plist结构在实现文件里面
     
+    static void plistPosition(CCNode *node, const char *plist); //使用plist来定位
+    
 };
 
 #endif /* defined(__ozgccs__OzgCCUtils__) */

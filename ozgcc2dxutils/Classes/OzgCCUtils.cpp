@@ -77,3 +77,13 @@ CCAnimate* OzgCCUtils::createAnimate(const char *plist)
     
     return animate;
 }
+
+void OzgCCUtils::plistPosition(cocos2d::CCNode *node, const char *plist)
+{
+    CCDictionary *root = CCDictionary::createWithContentsOfFile(plist);
+    float positionX = ((CCString*)root->objectForKey("position_x"))->floatValue();
+    float positionY = ((CCString*)root->objectForKey("position_y"))->floatValue();
+    node->setAnchorPoint(CCPointZero); //强制使用0锚点
+    node->setPosition(ccp(positionX, positionY));
+    
+}
