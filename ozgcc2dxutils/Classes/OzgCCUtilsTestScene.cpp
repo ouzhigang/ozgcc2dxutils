@@ -1,23 +1,23 @@
-#include "HelloWorldScene.h"
+#include "OzgCCUtilsTestScene.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-CCScene* HelloWorld::scene()
+CCScene* OzgCCUtilsTestScene::scene()
 {
     CCScene *scene = CCScene::create();
     
-    HelloWorld *layer = HelloWorld::create();
+    OzgCCUtilsTestScene *layer = OzgCCUtilsTestScene::create();
 
     scene->addChild(layer);
 
     return scene;
 }
 
-bool HelloWorld::init()
+bool OzgCCUtilsTestScene::init()
 {
-    if ( !CCLayerColor::initWithColor(ccc4(100, 100, 100, 255)) )
+    if (!CCLayerColor::initWithColor(ccc4(100, 100, 100, 255)))
     {
         return false;
     }
@@ -31,12 +31,12 @@ bool HelloWorld::init()
     CCAnimate *objAnim = OzgCCUtils::createAnimate("anim.plist");
     obj->runAction(objAnim);
     
-    this->scheduleOnce(schedule_selector(HelloWorld::clearCache), 3.0f);
+    this->scheduleOnce(schedule_selector(OzgCCUtilsTestScene::clearCache), 3.0f);
     
     return true;
 }
 
-void HelloWorld::clearCache()
+void OzgCCUtilsTestScene::clearCache()
 {
     CCSprite *obj = (CCSprite*)this->getChildByTag(99);
     obj->stopAllActions();

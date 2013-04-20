@@ -11,7 +11,7 @@
 
 #include "CCApplication.h"
 #include "cocos2d.h"
-#include "HelloWorldScene.h"
+#include "OzgCCUtilsTestScene.h"
 #include "OzgDragObjScene.h"
 
 /**
