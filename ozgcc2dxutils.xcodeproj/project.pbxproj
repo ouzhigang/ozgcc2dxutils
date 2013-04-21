@@ -53,6 +53,7 @@
 		4D39A2A81722FD5D003E7EDB /* b2WheelJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D39A2781722FD5D003E7EDB /* b2WheelJoint.cpp */; };
 		4D39A2A91722FD5D003E7EDB /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D39A27B1722FD5D003E7EDB /* b2Rope.cpp */; };
 		4D5FB73B1712F09200708373 /* OzgDragObjScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D5FB7391712F09200708373 /* OzgDragObjScene.cpp */; };
+		4DA52C461723819F001E705E /* GLES-Render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DA52C441723819F001E705E /* GLES-Render.cpp */; };
 		4DC69938170C4FC400974A53 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DC69937170C4FC400974A53 /* QuartzCore.framework */; };
 		4DC6993A170C4FC400974A53 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DC69939170C4FC400974A53 /* OpenGLES.framework */; };
 		4DC6993C170C4FC400974A53 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DC6993B170C4FC400974A53 /* OpenAL.framework */; };
@@ -346,6 +347,8 @@
 		4D39A27C1722FD5D003E7EDB /* b2Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2Rope.h; sourceTree = "<group>"; };
 		4D5FB7391712F09200708373 /* OzgDragObjScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OzgDragObjScene.cpp; path = Classes/OzgDragObjScene.cpp; sourceTree = "<group>"; };
 		4D5FB73A1712F09200708373 /* OzgDragObjScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OzgDragObjScene.h; path = Classes/OzgDragObjScene.h; sourceTree = "<group>"; };
+		4DA52C441723819F001E705E /* GLES-Render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "GLES-Render.cpp"; path = "Classes/GLES-Render.cpp"; sourceTree = "<group>"; };
+		4DA52C451723819F001E705E /* GLES-Render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GLES-Render.h"; path = "Classes/GLES-Render.h"; sourceTree = "<group>"; };
 		4DC69933170C4FC400974A53 /* ozgcc2dxutils.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ozgcc2dxutils.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DC69937170C4FC400974A53 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4DC69939170C4FC400974A53 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -958,6 +961,8 @@
 		4D39A2AB1722FDBF003E7EDB /* box2d */ = {
 			isa = PBXGroup;
 			children = (
+				4DA52C441723819F001E705E /* GLES-Render.cpp */,
+				4DA52C451723819F001E705E /* GLES-Render.h */,
 			);
 			name = box2d;
 			sourceTree = "<group>";
@@ -2130,6 +2135,7 @@
 				4D39A2A71722FD5D003E7EDB /* b2WeldJoint.cpp in Sources */,
 				4D39A2A81722FD5D003E7EDB /* b2WheelJoint.cpp in Sources */,
 				4D39A2A91722FD5D003E7EDB /* b2Rope.cpp in Sources */,
+				4DA52C461723819F001E705E /* GLES-Render.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
