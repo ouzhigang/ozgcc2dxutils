@@ -25,8 +25,8 @@ bool OzgDragObjScene::init()
         CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 1, true);
         
         CCSprite *s = CCSprite::create("Icon.png");
-        s->setTag(SpriteIndex1);
-        s->setPosition(ccp(100, 100));
+        s->setTag(kOzgDragObjSpriteIndex1);
+        s->setPosition(ccp(300, 300));
         this->addChild(s);
         
         return true;
@@ -49,18 +49,22 @@ CCScene* OzgDragObjScene::scene()
 
 bool OzgDragObjScene::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
-
+    CCSprite *s = (CCSprite*)this->getChildByTag(kOzgDragObjSpriteIndex1);
+    CCPoint point = pTouch->getLocation();
+    
+    if(s->boundingBox().containsPoint(point))
+        this->spriteIndex1Move = true;
+    
     return true;
 }
 
 void OzgDragObjScene::ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
-    CCSprite *s = (CCSprite*)this->getChildByTag(SpriteIndex1);
+    CCSprite *s = (CCSprite*)this->getChildByTag(kOzgDragObjSpriteIndex1);
     
-    CCPoint beginPoint = pTouch->getLocation();
-    
-    if(s->boundingBox().containsPoint(beginPoint))
+    if(this->spriteIndex1Move)
     {
+        CCPoint beginPoint = pTouch->getLocation();
         CCPoint endPoint = pTouch->getPreviousLocation();
         
         CCPoint offSet = ccpSub(beginPoint, endPoint);
@@ -72,8 +76,10 @@ void OzgDragObjScene::ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *p
 
 void OzgDragObjScene::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
-    CCSprite *s = (CCSprite*)this->getChildByTag(SpriteIndex1);
-    CCMoveTo *act = CCMoveTo::create(0.25f, ccp(100, 100));
+    CCSprite *s = (CCSprite*)this->getChildByTag(kOzgDragObjSpriteIndex1);
+    CCMoveTo *act = CCMoveTo::create(0.25f, ccp(300, 300));
     s->runAction(CCEaseElasticOut::create(act, 0.5f));
+    
+    this->spriteIndex1Move = false;
     
 }

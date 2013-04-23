@@ -15,13 +15,16 @@ USING_NS_CC;
 
 using namespace cocos2d;
 
-enum SpriteIndex
+enum kOzgDragObjSpriteIndex
 {
-    SpriteIndex1 = 1
+    kOzgDragObjSpriteIndex1 = 1
 };
 
 class OzgDragObjScene : public CCLayer
 {
+    
+private:
+    bool spriteIndex1Move = false;
     
 public:
     OzgDragObjScene();
