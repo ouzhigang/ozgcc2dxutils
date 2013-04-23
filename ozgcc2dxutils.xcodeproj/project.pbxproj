@@ -251,6 +251,10 @@
 		4DC69BD9170C4FCA00974A53 /* OzgCCUtilsTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DC69BD8170C4FCA00974A53 /* OzgCCUtilsTestScene.cpp */; };
 		4DC69BEC170C508200974A53 /* OzgCCUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DC69BEA170C508200974A53 /* OzgCCUtils.cpp */; };
 		4DC69BEE170C567C00974A53 /* anim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DC69BED170C567C00974A53 /* anim.plist */; };
+		9E1868031726560F00EEC378 /* OzgBox2DJointTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E1868011726560F00EEC378 /* OzgBox2DJointTestScene.cpp */; };
+		9E616B291725095D00EB8EE0 /* OzgBox2DBaseTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E616B261725095D00EB8EE0 /* OzgBox2DBaseTestScene.cpp */; };
+		9E616B2A1725095D00EB8EE0 /* OzgBox2DEdgeTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E616B271725095D00EB8EE0 /* OzgBox2DEdgeTestScene.cpp */; };
+		9E616B2C17250A0000EB8EE0 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E616B2B17250A0000EB8EE0 /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -781,6 +785,13 @@
 		4DC69BEA170C508200974A53 /* OzgCCUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OzgCCUtils.cpp; path = Classes/OzgCCUtils.cpp; sourceTree = "<group>"; };
 		4DC69BEB170C508200974A53 /* OzgCCUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OzgCCUtils.h; path = Classes/OzgCCUtils.h; sourceTree = "<group>"; };
 		4DC69BED170C567C00974A53 /* anim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = anim.plist; path = Resources/anim.plist; sourceTree = "<group>"; };
+		9E1868011726560F00EEC378 /* OzgBox2DJointTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OzgBox2DJointTestScene.cpp; path = Classes/OzgBox2DJointTestScene.cpp; sourceTree = "<group>"; };
+		9E1868021726560F00EEC378 /* OzgBox2DJointTestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OzgBox2DJointTestScene.h; path = Classes/OzgBox2DJointTestScene.h; sourceTree = "<group>"; };
+		9E616B251725095D00EB8EE0 /* OzgBox2DBaseTestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OzgBox2DBaseTestScene.h; path = Classes/OzgBox2DBaseTestScene.h; sourceTree = "<group>"; };
+		9E616B261725095D00EB8EE0 /* OzgBox2DBaseTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OzgBox2DBaseTestScene.cpp; path = Classes/OzgBox2DBaseTestScene.cpp; sourceTree = "<group>"; };
+		9E616B271725095D00EB8EE0 /* OzgBox2DEdgeTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OzgBox2DEdgeTestScene.cpp; path = Classes/OzgBox2DEdgeTestScene.cpp; sourceTree = "<group>"; };
+		9E616B281725095D00EB8EE0 /* OzgBox2DEdgeTestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OzgBox2DEdgeTestScene.h; path = Classes/OzgBox2DEdgeTestScene.h; sourceTree = "<group>"; };
+		9E616B2B17250A0000EB8EE0 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -788,6 +799,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E616B2C17250A0000EB8EE0 /* GLKit.framework in Frameworks */,
 				4DC69938170C4FC400974A53 /* QuartzCore.framework in Frameworks */,
 				4DC6993A170C4FC400974A53 /* OpenGLES.framework in Frameworks */,
 				4DC6993C170C4FC400974A53 /* OpenAL.framework in Frameworks */,
@@ -961,8 +973,14 @@
 		4D39A2AB1722FDBF003E7EDB /* box2d */ = {
 			isa = PBXGroup;
 			children = (
+				9E616B271725095D00EB8EE0 /* OzgBox2DEdgeTestScene.cpp */,
+				9E616B281725095D00EB8EE0 /* OzgBox2DEdgeTestScene.h */,
+				9E616B261725095D00EB8EE0 /* OzgBox2DBaseTestScene.cpp */,
+				9E616B251725095D00EB8EE0 /* OzgBox2DBaseTestScene.h */,
 				4DA52C441723819F001E705E /* GLES-Render.cpp */,
 				4DA52C451723819F001E705E /* GLES-Render.h */,
+				9E1868011726560F00EEC378 /* OzgBox2DJointTestScene.cpp */,
+				9E1868021726560F00EEC378 /* OzgBox2DJointTestScene.h */,
 			);
 			name = box2d;
 			sourceTree = "<group>";
@@ -987,6 +1005,7 @@
 		4DC69936170C4FC400974A53 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9E616B2B17250A0000EB8EE0 /* GLKit.framework */,
 				4DC69937170C4FC400974A53 /* QuartzCore.framework */,
 				4DC69939170C4FC400974A53 /* OpenGLES.framework */,
 				4DC6993B170C4FC400974A53 /* OpenAL.framework */,
@@ -2136,6 +2155,9 @@
 				4D39A2A81722FD5D003E7EDB /* b2WheelJoint.cpp in Sources */,
 				4D39A2A91722FD5D003E7EDB /* b2Rope.cpp in Sources */,
 				4DA52C461723819F001E705E /* GLES-Render.cpp in Sources */,
+				9E616B291725095D00EB8EE0 /* OzgBox2DBaseTestScene.cpp in Sources */,
+				9E616B2A1725095D00EB8EE0 /* OzgBox2DEdgeTestScene.cpp in Sources */,
+				9E1868031726560F00EEC378 /* OzgBox2DJointTestScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2212,6 +2234,7 @@
 				GCC_PREFIX_HEADER = ozgcc2dxutils/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = ozgcc2dxutils/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ozgcc2dxutils/libs/cocos2dx/platform/third_party/ios/libraries\"",
@@ -2221,6 +2244,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "\"ozgcc2dxutils/libs\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2235,6 +2259,7 @@
 				GCC_PREFIX_HEADER = ozgcc2dxutils/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = ozgcc2dxutils/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ozgcc2dxutils/libs/cocos2dx/platform/third_party/ios/libraries\"",
@@ -2244,6 +2269,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "\"ozgcc2dxutils/libs\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

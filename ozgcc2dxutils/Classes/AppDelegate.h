@@ -12,6 +12,8 @@
 #include "CCApplication.h"
 #include "cocos2d.h"
 #include "OzgCCUtilsTestScene.h"
+#include "OzgBox2DEdgeTestScene.h"
+#include "OzgBox2DJointTestScene.h"
 #include "OzgDragObjScene.h"
 
 /**

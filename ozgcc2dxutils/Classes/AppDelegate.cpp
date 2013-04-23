@@ -32,7 +32,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    CCScene *pScene = OzgDragObjScene::scene();
+    CCScene *pScene = OzgBox2DJointTestScene::scene();
 
     // run
     pDirector->runWithScene(pScene);
