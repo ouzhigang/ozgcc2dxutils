@@ -253,6 +253,8 @@
 		4DC69BEE170C567C00974A53 /* anim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DC69BED170C567C00974A53 /* anim.plist */; };
 		9E17E147172CC19D006C8613 /* OzgFileUtility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E17E145172CC19D006C8613 /* OzgFileUtility.cpp */; };
 		9E1868031726560F00EEC378 /* OzgBox2DJointTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E1868011726560F00EEC378 /* OzgBox2DJointTestScene.cpp */; };
+		9E29948E174DF2ED000C0CB2 /* OzgCCAsyncImages.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E29948D174DF2ED000C0CB2 /* OzgCCAsyncImages.cpp */; };
+		9E299494174DF9BA000C0CB2 /* OzgCCAsyncImagesScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E299492174DF9BA000C0CB2 /* OzgCCAsyncImagesScene.cpp */; };
 		9E616B291725095D00EB8EE0 /* OzgBox2DBaseTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E616B261725095D00EB8EE0 /* OzgBox2DBaseTestScene.cpp */; };
 		9E616B2A1725095D00EB8EE0 /* OzgBox2DEdgeTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E616B271725095D00EB8EE0 /* OzgBox2DEdgeTestScene.cpp */; };
 		9E616B2C17250A0000EB8EE0 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E616B2B17250A0000EB8EE0 /* GLKit.framework */; };
@@ -790,6 +792,10 @@
 		9E17E146172CC19D006C8613 /* OzgFileUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OzgFileUtility.h; path = Classes/OzgFileUtility.h; sourceTree = "<group>"; };
 		9E1868011726560F00EEC378 /* OzgBox2DJointTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OzgBox2DJointTestScene.cpp; path = Classes/OzgBox2DJointTestScene.cpp; sourceTree = "<group>"; };
 		9E1868021726560F00EEC378 /* OzgBox2DJointTestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OzgBox2DJointTestScene.h; path = Classes/OzgBox2DJointTestScene.h; sourceTree = "<group>"; };
+		9E29948C174DF2ED000C0CB2 /* OzgCCAsyncImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OzgCCAsyncImages.h; path = Classes/OzgCCAsyncImages.h; sourceTree = "<group>"; };
+		9E29948D174DF2ED000C0CB2 /* OzgCCAsyncImages.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OzgCCAsyncImages.cpp; path = Classes/OzgCCAsyncImages.cpp; sourceTree = "<group>"; };
+		9E299492174DF9BA000C0CB2 /* OzgCCAsyncImagesScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OzgCCAsyncImagesScene.cpp; path = Classes/OzgCCAsyncImagesScene.cpp; sourceTree = "<group>"; };
+		9E299493174DF9BA000C0CB2 /* OzgCCAsyncImagesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OzgCCAsyncImagesScene.h; path = Classes/OzgCCAsyncImagesScene.h; sourceTree = "<group>"; };
 		9E616B251725095D00EB8EE0 /* OzgBox2DBaseTestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OzgBox2DBaseTestScene.h; path = Classes/OzgBox2DBaseTestScene.h; sourceTree = "<group>"; };
 		9E616B261725095D00EB8EE0 /* OzgBox2DBaseTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OzgBox2DBaseTestScene.cpp; path = Classes/OzgBox2DBaseTestScene.cpp; sourceTree = "<group>"; };
 		9E616B271725095D00EB8EE0 /* OzgBox2DEdgeTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OzgBox2DEdgeTestScene.cpp; path = Classes/OzgBox2DEdgeTestScene.cpp; sourceTree = "<group>"; };
@@ -1854,6 +1860,8 @@
 				4D39A2AB1722FDBF003E7EDB /* box2d */,
 				4DC69BD5170C4FCA00974A53 /* AppDelegate.cpp */,
 				4DC69BD4170C4FCA00974A53 /* AppDelegate.h */,
+				9E299492174DF9BA000C0CB2 /* OzgCCAsyncImagesScene.cpp */,
+				9E299493174DF9BA000C0CB2 /* OzgCCAsyncImagesScene.h */,
 				4D5FB7391712F09200708373 /* OzgDragObjScene.cpp */,
 				4D5FB73A1712F09200708373 /* OzgDragObjScene.h */,
 			);
@@ -1863,6 +1871,8 @@
 		9E18680F17267A5600EEC378 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				9E29948D174DF2ED000C0CB2 /* OzgCCAsyncImages.cpp */,
+				9E29948C174DF2ED000C0CB2 /* OzgCCAsyncImages.h */,
 				9E17E145172CC19D006C8613 /* OzgFileUtility.cpp */,
 				9E17E146172CC19D006C8613 /* OzgFileUtility.h */,
 				4DC69BEA170C508200974A53 /* OzgCCUtils.cpp */,
@@ -2172,6 +2182,8 @@
 				9E616B2A1725095D00EB8EE0 /* OzgBox2DEdgeTestScene.cpp in Sources */,
 				9E1868031726560F00EEC378 /* OzgBox2DJointTestScene.cpp in Sources */,
 				9E17E147172CC19D006C8613 /* OzgFileUtility.cpp in Sources */,
+				9E29948E174DF2ED000C0CB2 /* OzgCCAsyncImages.cpp in Sources */,
+				9E299494174DF9BA000C0CB2 /* OzgCCAsyncImagesScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
