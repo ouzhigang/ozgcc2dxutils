@@ -87,3 +87,128 @@ void OzgCCUtils::plistPosition(cocos2d::CCNode *node, const char *plist)
     node->setPosition(ccp(positionX, positionY));
     
 }
+
+unsigned int OzgCCUtils::rangeRand(unsigned int min, unsigned int max)
+{
+    unsigned int x = abs((random() * time(NULL) % (max - min)));
+    x += min;
+    return x;
+}
+
+int OzgCCUtils::atoi(const char *src)
+{
+    char flag = 0;
+    int sum = 0;
+    int i = 0;
+    int len = (int)strlen(src);
+    
+    /*参数的正确性*/
+    if(NULL == src)
+    {
+        return 0;
+    }
+    
+    /*是否存在符号问题*/
+    if(src[i] == '-')
+    {
+        flag = '-';
+        ++i;
+    }
+    
+    for( ; i < len; ++i)
+    {
+        /*判断字符是否合法*/
+        if(src[i] < 48 && src[i] > 57)
+            return 0;
+        
+        /*数据求和，注意数值的转换问题src[i] - 48*/
+        sum = sum * 10 + src[i] - 48;
+    }
+    
+    /*根据标志位实现返回正确的正负数*/
+    if(flag == '-')
+        return -sum;
+    else
+        return sum;
+}
+
+char* OzgCCUtils::itoa(int num, char *str)
+{
+    //char flag = 0;
+    int i = 0, count = 0, j = 0;
+    
+    /*参数检测*/
+    if(NULL == str)
+    {
+        return NULL;
+    }
+    
+    /*判断数值的正负,设置对应的符号*/
+    if(num < 0)
+    {
+        str[i++] = '-';
+        
+        /************************
+         同时要对数值取绝对值
+         保证后面取余整除操作正常
+         *************************/
+        num = -num;
+    }
+    
+    while(num / 10)
+    {
+        /***************************
+         count用来保存实际的数字个数,
+         便于后期的顺序调换
+         ****************************/
+        ++count;
+        /*实际保存的顺序为反序列*/
+        str[i++] = num % 10 + 48;
+        num /= 10;
+    }
+    /*判断是*/
+    if(num % 10)
+    {
+        str[i++] = num %10 + 48;
+        ++count;
+    }
+    /*字符串结束符*/
+    str[i] = 0;
+    
+    /*实现数据的较好操作*/
+    i = 0;
+    if(str[0] == '-')
+    {
+        i = 1;
+    }
+    /*实际交换的下标区间为i~j*/
+    j = count + i - 1;
+    
+    for(; i < j ; ++i, --j)
+    {
+        /*数据的较好操作*/
+        str[i] = str[i] + str[j];
+        str[j] = str[i] - str[j];
+        str[i] = str[i] - str[j];
+    }
+    
+    /*返回实际的字符串*/
+    return str;
+}
+
+char* OzgCCUtils::formatTime(const char *format)
+{
+    return OzgCCUtils::formatTime(format, time(NULL));
+}
+
+char* OzgCCUtils::formatTime(const char *format, time_t utc_time)
+{
+    static char str_time[128];
+    struct tm *local_time = NULL;
+    
+    utc_time = time (NULL);
+    local_time = localtime(&utc_time);
+    strftime(str_time, sizeof(str_time), format, local_time);
+    
+    return str_time;
+}

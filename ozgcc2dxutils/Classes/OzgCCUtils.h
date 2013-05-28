@@ -30,6 +30,12 @@ public:
     
     static void plistPosition(CCNode *node, const char *plist); //使用plist来定位
     
+    static unsigned int rangeRand(unsigned int min, unsigned int max); //范围随机数
+    static int atoi(const char *src); //atoi的加强版，字符转整数
+    static char* itoa(int num, char *str); //整数转字符
+    static char* formatTime(const char* format); //返回格式化的时间
+    static char* formatTime(const char* format, time_t utc_time);
+    
 };
 
 #endif /* defined(__ozgccs__OzgCCUtils__) */

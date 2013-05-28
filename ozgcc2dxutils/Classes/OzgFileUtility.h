@@ -25,6 +25,7 @@
 #define __ozgcpp__OzgFileUtility__
 
 #include <iostream.h>
+#include <fstream> 
 #include <vector>
 #include <cstring>
 #include <ctime>
@@ -60,6 +61,9 @@ public:
     
     //判断是否为文件
     static bool isFile(const string &path);
+    
+    //判断文件或文件夹是否存在
+    static bool fileExists(const string &path);
     
 };
 

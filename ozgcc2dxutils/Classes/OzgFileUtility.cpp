@@ -130,3 +130,15 @@ bool OzgFileUtility::isFile(const string &path)
     int ret = stat(path.c_str(), &st);
     return ret >= 0 && S_ISREG(st.st_mode);
 }
+
+//判断文件或文件夹是否存在
+bool OzgFileUtility::fileExists(const string &path)
+{
+    fstream fs;
+    fs.open(path.c_str(), ios::in);
+    if(!fs)
+        return false;
+    else
+        return true;
+    
+}
