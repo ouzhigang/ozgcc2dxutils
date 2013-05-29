@@ -8,6 +8,20 @@
 
 #include "OzgFileUtility.h"
 
+//私有方法
+bool OzgFileUtility::isSpecialDir(const char *path)
+{
+    return strcmp(path, ".") == 0 || strcmp(path, "..") == 0;
+}
+
+void OzgFileUtility::getFilePath(const char *path, const char *fileName,  char *filePath)
+{
+    strcpy(filePath, path);
+    if(filePath[strlen(path) - 1] != '/')
+        strcat(filePath, "/");
+    strcat(filePath, fileName);
+}
+
 //获取路径下的所有文件夹和文件
 vector<string> OzgFileUtility::getFoldersAndFile(const string &path, bool showAbsolutePath)
 {
@@ -141,4 +155,32 @@ bool OzgFileUtility::fileExists(const string &path)
     else
         return true;
     
+}
+
+void OzgFileUtility::deleteFile(const string &path)
+{
+    DIR *dir;
+    dirent *dirInfo;
+    char filePath[PATH_MAX];
+    if(OzgFileUtility::isFile(path))
+    {
+        remove(path.c_str());
+        return;
+    }
+    
+    if(OzgFileUtility::isFolder(path))
+    {
+        if((dir = opendir(path.c_str())) == NULL)
+            return;
+        while((dirInfo = readdir(dir)) != NULL)
+        {
+            OzgFileUtility::getFilePath(path.c_str(), dirInfo->d_name, filePath);
+            if(OzgFileUtility::isSpecialDir(dirInfo->d_name))
+                continue;
+            OzgFileUtility::deleteFile(filePath);
+            rmdir(filePath);
+        }
+        
+        rmdir(path.c_str());
+    }
 }

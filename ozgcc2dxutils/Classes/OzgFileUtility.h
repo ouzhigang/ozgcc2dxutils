@@ -41,6 +41,14 @@ const int MAX_DUR = 5 * 60;
 class OzgFileUtility
 {
 
+private:
+    
+    //判断是否是特殊目录
+    static bool isSpecialDir(const char *path);
+    
+    //生成完整的文件路径
+    static void getFilePath(const char *path, const char *fileName,  char *filePath);
+    
 public:
     
     //获取路径下的所有文件夹和文件
@@ -64,6 +72,9 @@ public:
     
     //判断文件或文件夹是否存在
     static bool fileExists(const string &path);
+    
+    //删除非空文件夹
+    static void deleteFile(const string &path);
     
 };
 
