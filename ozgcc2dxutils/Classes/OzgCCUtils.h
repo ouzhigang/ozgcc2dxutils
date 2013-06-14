@@ -12,9 +12,9 @@
 
 #include "cocos2d.h"
 
-USING_NS_CC;
+#define OZG_BASE64 "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
 
-using namespace cocos2d;
+USING_NS_CC;
 
 class OzgCCUtils
 {
@@ -35,7 +35,26 @@ public:
     static char* itoa(int num, char *str); //整数转字符
     static char* formatTime(const char* format); //返回格式化的时间，参数1 demos:"%Y-%m-%d %H:%M:%S"
     static char* formatTime(const char* format, time_t utc_time);
-    
+
+    /*
+     base64 demo
+     
+     const char *t = "this is ozg demo";
+     int j = strlen(t);
+     char *enc = OzgCCUtils::base64Encode(t, j);
+     int len = strlen(enc);
+     char *dec = OzgCCUtils::base64Decode(enc, len);
+     printf("\noriginal: %s\n", t);
+     printf("\nencoded : %s\n", enc);
+     printf("\ndecoded : %s\n", dec);
+     free(enc);
+     free(dec);
+     
+     */
+    static char *base64Encode(const char* data, int data_len);
+    static char base64FindPos(char ch);
+    static char *base64Decode(const char *data, int data_len);
+
 };
 
 #endif /* defined(__ozgccs__OzgCCUtils__) */

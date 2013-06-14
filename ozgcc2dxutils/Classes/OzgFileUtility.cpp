@@ -184,3 +184,35 @@ void OzgFileUtility::deleteFile(const string &path)
         rmdir(path.c_str());
     }
 }
+
+bool OzgFileUtility::copyFile(const char *src, const char *des)
+{
+    FILE * fSrc = fopen(src, "rb");
+    if(!fSrc)
+    {
+        printf("打开文件`%s`失败", src);
+        return false;
+    }
+    FILE * fDes = fopen(des, "wb");
+    if(!fDes)
+    {
+        printf("创建文件`%s`失败", des);
+        return false;
+    }
+    
+    unsigned char * buf;
+    unsigned int length;
+    fseek(fSrc, 0, SEEK_END);
+    length = ftell(fSrc);
+    buf = new unsigned char[length+1];
+    memset(buf, 0, length+1);
+    fseek(fSrc, 0, SEEK_SET);
+    fread(buf, length, 1, fSrc);
+    
+    fwrite(buf, length, 1, fDes);
+    
+    fclose(fSrc);
+    fclose(fDes);
+    delete [] buf;
+    return true;
+}

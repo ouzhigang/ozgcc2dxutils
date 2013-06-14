@@ -76,6 +76,8 @@ public:
     //删除非空文件夹
     static void deleteFile(const string &path);
     
+    //复制文件
+    static bool copyFile(const char *src, const char *des);
 };
 
 
