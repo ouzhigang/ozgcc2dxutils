@@ -216,3 +216,66 @@ bool OzgFileUtility::copyFile(const char *src, const char *des)
     delete [] buf;
     return true;
 }
+
+void OzgFileUtility::copyFolder(const char *src, const char *des)
+{
+    if(!OzgFileUtility::fileExists(src))
+    {
+        cout << "源文件夹不存在" << endl;
+        return;
+    }
+    
+    if(OzgFileUtility::fileExists(des))
+        //删除旧的版本
+        OzgFileUtility::deleteFile(des);
+    
+    //建立空文件夹
+    mkdir(des, S_IRWXU);
+    
+    vector<string> fileList = OzgFileUtility::getFoldersAndFile(src);
+    vector<string>::iterator fileListIterator = fileList.begin();
+    while (fileListIterator != fileList.end())
+    {
+        string targetFileName = *fileListIterator;
+        targetFileName.replace(0, strlen(src), des);
+        
+        if(OzgFileUtility::isFolder(*fileListIterator))
+        {
+            //建立文件夹
+            mkdir(targetFileName.c_str(), S_IRWXU);
+            
+            vector<string> fileList2 = OzgFileUtility::getFoldersAndFile(*fileListIterator);
+            vector<string>::iterator fileListIterator2 = fileList2.begin();
+            while (fileListIterator2 != fileList2.end())
+            {
+                targetFileName = *fileListIterator2;
+                targetFileName.replace(0, strlen(src), des);
+                
+                if(OzgFileUtility::isFolder(*fileListIterator2))
+                {
+                    OzgFileUtility::copyFolder((*fileListIterator2).c_str(), targetFileName.c_str());
+                    //cout << *fileListIterator2 << endl;
+                }
+                else
+                {
+                    //复制文件
+                    
+                    OzgFileUtility::copyFile((*fileListIterator2).c_str(), targetFileName.c_str());
+                    //cout << targetFileName << endl;
+                }
+                
+                fileListIterator2++;
+            }
+            
+        }
+        else
+        {
+            //复制文件            
+            OzgFileUtility::copyFile((*fileListIterator).c_str(), targetFileName.c_str());
+            //cout << targetFileName << endl;
+        }
+        
+        fileListIterator++;
+    }
+    
+}

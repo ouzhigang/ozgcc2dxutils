@@ -78,6 +78,10 @@ public:
     
     //复制文件
     static bool copyFile(const char *src, const char *des);
+    
+    //复制文件夹（des的路径如果存在则直接替换成新的版本）
+    static void copyFolder(const char *src, const char *des);
+    
 };
 
 
