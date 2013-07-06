@@ -1,8 +1,0 @@
-//
-// Prefix header for all source files of the 'ozgcc2dxutils' target in the 'ozgcc2dxutils' project
-//
-
-#ifdef __OBJC__
-	#import <Foundation/Foundation.h>
-	#import <UIKit/UIKit.h>
-#endif
