@@ -95,6 +95,20 @@ unsigned int OzgCCUtils::rangeRand(unsigned int min, unsigned int max)
     return x;
 }
 
+void OzgCCUtils::randomSeed(int seed)
+{
+    if(!seed)
+        OzgCCUtilsRandomSeed = time(NULL);
+    else
+        OzgCCUtilsRandomSeed = seed;
+}
+
+float OzgCCUtils::randomFloat(float min, float max)
+{
+    OzgCCUtilsRandomSeed = 214013 * OzgCCUtilsRandomSeed + 2531011;
+    return min + (OzgCCUtilsRandomSeed >> 16) * (1.0f / 65535.0f) * (max - min);
+}
+
 int OzgCCUtils::atoi(const char *src)
 {
     char flag = 0;
