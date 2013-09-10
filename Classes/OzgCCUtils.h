@@ -16,6 +16,8 @@
 
 USING_NS_CC;
 
+static unsigned int OzgCCUtilsRandomSeed = 0;
+
 class OzgCCUtils
 {
     
@@ -31,6 +33,16 @@ public:
     static void plistPosition(CCNode *node, const char *plist); //使用plist来定位
     
     static unsigned int rangeRand(unsigned int min, unsigned int max); //范围随机数
+    //随机例子，第一次调用randomFloat的值都是一样的，所以第一次的值可以忽略
+//    OzgCCUtils::randomSeed(0);
+//    for (int i = 0; i < 10; i++)
+//    {
+//        CCLog("%f, %f", OzgCCUtils::randomFloat(0.0f, 3.0f), OzgCCUtils::randomFloat(0.0f, 3.0f));
+//        sleep(1);
+//    }
+    static void randomSeed(int seed);
+    static float randomFloat(float min, float max); //范围随机float
+    
     static int atoi(const char *src); //atoi的加强版，字符转整数
     static char* itoa(int num, char *str); //整数转字符
     static char* formatTime(const char* format); //返回格式化的时间，参数1 demos:"%Y-%m-%d %H:%M:%S"
