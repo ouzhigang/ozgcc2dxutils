@@ -1,38 +1,42 @@
 //
-//  OzgFileUtility.h
-//  ozgcpp
+// OzgFileUtility.h
+// ozgcpp
 //
-//  Created by Tpwid on 13-4-27.
-//  Copyright (c) 2013年 欧 志刚. All rights reserved.
+// Created by Tpwid on 13-4-27.
+// Copyright (c) 2013年 欧 志刚. All rights reserved.
 //
 
 /*
- 
- demo
- 
- vector<string> files = OzgFileUtility::getFoldersAndFile("/");
- vector<string>::iterator filesIterator = files.begin();
- while (filesIterator != files.end())
- {
-    cout << *filesIterator << endl;
- 
-    filesIterator++;
- }
- 
- */
+demo
+vector<string> files = OzgFileUtility::getFoldersAndFile("/");
+vector<string>::iterator filesIterator = files.begin();
+while (filesIterator != files.end())
+{
+cout << *filesIterator << endl;
+filesIterator++;
+}
+*/
 
 #ifndef __ozgcpp__OzgFileUtility__
 #define __ozgcpp__OzgFileUtility__
 
-#include <iostream.h>
-#include <fstream> 
+#include "cocos2d.h"
+#include <iostream>
+#include <fstream>
 #include <vector>
 #include <cstring>
 #include <ctime>
 #include <sys/stat.h>
 #include <cstdio>
 #include <cstdlib>
+
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32) && (CC_TARGET_PLATFORM != CC_PLATFORM_WIN8) && (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
+//mac or ios or android or linux
 #include <dirent.h>
+#else
+//win32 or win8 or winrt
+#include <Windows.h>
+#endif
 
 using namespace std;
 
@@ -43,11 +47,15 @@ class OzgFileUtility
 
 private:
     
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+	static wstring OzgFileUtility::s2ws(const std::string& s);
+#endif
+
     //判断是否是特殊目录
     static bool isSpecialDir(const char *path);
     
     //生成完整的文件路径
-    static void getFilePath(const char *path, const char *fileName,  char *filePath);
+    static void getFilePath(const char *path, const char *fileName, char *filePath);
     
 public:
     

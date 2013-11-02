@@ -1,20 +1,36 @@
 //
-//  OzgFileUtility.cpp
-//  ozgcpp
+// OzgFileUtility.cpp
+// ozgcpp
 //
-//  Created by Tpwid on 13-4-27.
-//  Copyright (c) 2013年 欧 志刚. All rights reserved.
+// Created by Tpwid on 13-4-27.
+// Copyright (c) 2013年 欧 志刚. All rights reserved.
 //
 
 #include "OzgFileUtility.h"
 
 //私有方法
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+//win32 or win8 or winrt
+wstring OzgFileUtility::s2ws(const std::string& s)
+{
+	int len;
+	int slength = (int)s.length() + 1;
+	len = MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, 0, 0); 
+	wchar_t* buf = new wchar_t[len];
+	MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, buf, len);
+	std::wstring r(buf);
+	delete[] buf;
+	return r;
+}
+#endif
+
 bool OzgFileUtility::isSpecialDir(const char *path)
 {
     return strcmp(path, ".") == 0 || strcmp(path, "..") == 0;
 }
 
-void OzgFileUtility::getFilePath(const char *path, const char *fileName,  char *filePath)
+void OzgFileUtility::getFilePath(const char *path, const char *fileName, char *filePath)
 {
     strcpy(filePath, path);
     if(filePath[strlen(path) - 1] != '/')
@@ -26,6 +42,10 @@ void OzgFileUtility::getFilePath(const char *path, const char *fileName,  char *
 vector<string> OzgFileUtility::getFoldersAndFile(const string &path, bool showAbsolutePath)
 {
     vector<string> items;
+    
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32) && (CC_TARGET_PLATFORM != CC_PLATFORM_WIN8) && (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
+//mac or ios or android or linux
+    
     struct dirent* ent = NULL;
     DIR* pDir;
     pDir = opendir(path.c_str());
@@ -45,10 +65,15 @@ vector<string> OzgFileUtility::getFoldersAndFile(const string &path, bool showAb
                 filePath.append("/");
                             
             filePath.append(ent->d_name);
-            items.push_back(filePath);                
+            items.push_back(filePath);
         }
     }
     closedir(pDir);
+#else
+//win32 or win8 or winrt
+
+#endif
+    
     return items;
 }
 
@@ -56,13 +81,16 @@ vector<string> OzgFileUtility::getFoldersAndFile(const string &path, bool showAb
 vector<string> OzgFileUtility::getFolders(const string &path, bool showAbsolutePath)
 {
     vector<string> folders;
+    
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32) && (CC_TARGET_PLATFORM != CC_PLATFORM_WIN8) && (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
+//mac or ios or android or linux
     struct dirent* ent = NULL;
     DIR* pDir;
     pDir = opendir(path.c_str());
     while(NULL != (ent = readdir(pDir)))
     {
         string fullpath = path + "/" + ent->d_name;
-        //if(4 == ent->d_type)  //在nfs或xfs下，有的目录d_type也是0
+        //if(4 == ent->d_type) //在nfs或xfs下，有的目录d_type也是0
         if(OzgFileUtility::isFolder(fullpath))
         {
             if(strcmp(ent->d_name, ".") != 0 && strcmp(ent->d_name, "..") != 0)
@@ -83,6 +111,11 @@ vector<string> OzgFileUtility::getFolders(const string &path, bool showAbsoluteP
         }
     }
     closedir(pDir);
+#else
+//win32 or win8 or winrt
+    
+#endif
+    
     return folders;
 }
 
@@ -90,13 +123,16 @@ vector<string> OzgFileUtility::getFolders(const string &path, bool showAbsoluteP
 vector<string> OzgFileUtility::getFiles(const string &path, bool showAbsolutePath, const string &postfix)
 {
     vector<string> files;
+    
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32) && (CC_TARGET_PLATFORM != CC_PLATFORM_WIN8) && (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
+//mac or ios or android or linux
     struct dirent* ent = NULL;
     DIR* pDir;
     pDir = opendir(path.c_str());
     while(NULL != (ent = readdir(pDir)))
     {
         string fullpath = path + "/" + ent->d_name;
-        //if(8 == ent->d_type)  //在nfs或xfs下，有的文件d_type也是0
+        //if(8 == ent->d_type) //在nfs或xfs下，有的文件d_type也是0
         if(OzgFileUtility::isFile(fullpath))
         {
             if(postfix == "" || strstr(ent->d_name, postfix.c_str())!=NULL)
@@ -117,6 +153,11 @@ vector<string> OzgFileUtility::getFiles(const string &path, bool showAbsolutePat
         }
     }
     closedir(pDir);
+#else
+//win32 or win8 or winrt
+    
+#endif
+    
     return files;
 }
 
@@ -132,17 +173,31 @@ bool OzgFileUtility::isPrepared(const string &path)
 //判断是否为文件夹，用stat的标志来判断
 bool OzgFileUtility::isFolder(const string &path)
 {
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32) && (CC_TARGET_PLATFORM != CC_PLATFORM_WIN8) && (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
+//mac or ios or android or linux
     struct stat st;
     int ret = stat(path.c_str(), &st);
     return ret >= 0 && S_ISDIR(st.st_mode);
+#else
+
+	return false;
+#endif
+
 }
 
 //判断是否为文件，用stat的标志来判断
 bool OzgFileUtility::isFile(const string &path)
 {
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32) && (CC_TARGET_PLATFORM != CC_PLATFORM_WIN8) && (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
+//mac or ios or android or linux
     struct stat st;
     int ret = stat(path.c_str(), &st);
     return ret >= 0 && S_ISREG(st.st_mode);
+#else
+
+	return false;
+#endif
+
 }
 
 //判断文件或文件夹是否存在
@@ -159,6 +214,8 @@ bool OzgFileUtility::fileExists(const string &path)
 
 void OzgFileUtility::deleteFile(const string &path)
 {
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32) && (CC_TARGET_PLATFORM != CC_PLATFORM_WIN8) && (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
+//mac or ios or android or linux
     DIR *dir;
     dirent *dirInfo;
     char filePath[PATH_MAX];
@@ -183,6 +240,11 @@ void OzgFileUtility::deleteFile(const string &path)
         
         rmdir(path.c_str());
     }
+#else
+//win32 or win8 or winrt
+    
+#endif
+    
 }
 
 bool OzgFileUtility::copyFile(const char *src, const char *des)
@@ -229,8 +291,14 @@ void OzgFileUtility::copyFolder(const char *src, const char *des)
         //删除旧的版本
         OzgFileUtility::deleteFile(des);
     
-    //建立空文件夹
+	 //建立空文件夹
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32) && (CC_TARGET_PLATFORM != CC_PLATFORM_WIN8) && (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
+//mac or ios or android or linux
+   
     mkdir(des, S_IRWXU);
+#else
+	_wmkdir((wchar_t*)des);
+#endif
     
     vector<string> fileList = OzgFileUtility::getFoldersAndFile(src);
     vector<string>::iterator fileListIterator = fileList.begin();
@@ -241,9 +309,14 @@ void OzgFileUtility::copyFolder(const char *src, const char *des)
         
         if(OzgFileUtility::isFolder(*fileListIterator))
         {
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32) && (CC_TARGET_PLATFORM != CC_PLATFORM_WIN8) && (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
+//mac or ios or android or linux
             //建立文件夹
             mkdir(targetFileName.c_str(), S_IRWXU);
-            
+#else
+			_wmkdir((wchar_t*)targetFileName.c_str());
+#endif
+
             vector<string> fileList2 = OzgFileUtility::getFoldersAndFile(*fileListIterator);
             vector<string>::iterator fileListIterator2 = fileList2.begin();
             while (fileListIterator2 != fileList2.end())
@@ -270,7 +343,7 @@ void OzgFileUtility::copyFolder(const char *src, const char *des)
         }
         else
         {
-            //复制文件            
+            //复制文件
             OzgFileUtility::copyFile((*fileListIterator).c_str(), targetFileName.c_str());
             //cout << targetFileName << endl;
         }

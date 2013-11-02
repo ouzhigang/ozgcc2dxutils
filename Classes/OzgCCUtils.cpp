@@ -90,9 +90,15 @@ void OzgCCUtils::plistPosition(cocos2d::CCNode *node, const char *plist)
 
 unsigned int OzgCCUtils::rangeRand(unsigned int min, unsigned int max)
 {
-    unsigned int x = abs((random() * time(NULL) % (max - min)));
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+    unsigned int x = abs((rand() * time(NULL) % (max - min)));
     x += min;
     return x;
+#else
+    unsigned int x = abs((int)((random() * time(NULL) % (max - min))));
+    x += min;
+    return x;
+#endif
 }
 
 void OzgCCUtils::randomSeed(int seed)
@@ -373,4 +379,65 @@ char* OzgCCUtils::base64Decode(const char *data, int data_len)
     }
     *f = '\0';
     return ret;
+}
+
+float OzgCCUtils::roundf(float num)
+{
+    float num1 = num - floorf(num);
+    float num2 = ceilf(num) - num;
+    
+    if (num1 > num2)
+    return ceilf(num);
+    else
+    return floorf(num);
+}
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+//windows的乱码解决方案
+
+//字符转换，使cocos2d-x在win32平台支持中文显示  
+int OzgCCUtils::GBKToUTF8(string &gbkStr, const char* toCode, const char* formCode)  
+{  
+    iconv_t iconvH;  
+    iconvH = iconv_open(formCode, toCode);  
+    if(iconvH == 0)  
+    {  
+        return -1;  
+    }  
+  
+    const char* strChar = gbkStr.c_str();  
+    const char** pin = &strChar;  
+  
+    size_t strLength = gbkStr.length();  
+    char* outbuf = (char*)malloc(strLength * 4);  
+    char* pBuff = outbuf;  
+    memset(outbuf, 0, strLength * 4);  
+    size_t outLength = strLength * 4;  
+    if(-1 == iconv(iconvH, pin, &strLength, &outbuf, &outLength))  
+    {  
+        iconv_close(iconvH);  
+        return -1;  
+    }  
+  
+    gbkStr = pBuff;  
+    iconv_close(iconvH);  
+    return 0;  
+}  
+#endif  
+
+string OzgCCUtils::generalString(std::string &str)  
+{  
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+	OzgCCUtils::GBKToUTF8(str, "gbk", "utf-8"); //后面两个参数就默认了,免得后面再传参麻烦  
+	return str;  
+#else 
+	return str;
+#endif  
+
+}
+
+string OzgCCUtils::generalString(const char* str)
+{
+    std::string s(str);
+    return OzgCCUtils::generalString(s);
 }

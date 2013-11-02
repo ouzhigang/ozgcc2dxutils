@@ -12,16 +12,21 @@
 
 #include "cocos2d.h"
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+//(注意：对工程右键-> 属性 -> 连接器 -> 输入 -> 附加依赖项    栏目->后面有个按钮，点击打开，换一行加入libiconv.lib，或者在最后空一格加上libiconv.lib也行）
+#include "iconv\iconv.h" 
+#endif  
+
 #define OZG_BASE64 "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
 
 USING_NS_CC;
+using namespace std;
 
 static unsigned int OzgCCUtilsRandomSeed = 0;
 
 class OzgCCUtils
 {
-    
-    
+        
 public:
     
     //draw实心圆,参数为：中心点，半径，线段数（越大锯齿就越少），颜色
@@ -33,6 +38,7 @@ public:
     static void plistPosition(CCNode *node, const char *plist); //使用plist来定位
     
     static unsigned int rangeRand(unsigned int min, unsigned int max); //范围随机数
+    
     //随机例子，第一次调用randomFloat的值都是一样的，所以第一次的值可以忽略
 //    OzgCCUtils::randomSeed(0);
 //    for (int i = 0; i < 10; i++)
@@ -66,7 +72,16 @@ public:
     static char *base64Encode(const char* data, int data_len);
     static char base64FindPos(char ch);
     static char *base64Decode(const char *data, int data_len);
-
+    
+    static float roundf(float num); //四舍五入到整数
+    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+	//windows的乱码解决方案
+	static int GBKToUTF8(string &gbkStr,const char* toCode,const char* formCode);
+#endif  
+	static string generalString(string &str); //通用的乱码解决方案
+    static string generalString(const char* str);
+    
 };
 
 #endif /* defined(__ozgccs__OzgCCUtils__) */
