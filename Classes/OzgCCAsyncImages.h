@@ -25,8 +25,8 @@
  
  */
 
-#ifndef __kippo_drawing_animal__OzgCCAsyncImages__
-#define __kippo_drawing_animal__OzgCCAsyncImages__
+#ifndef __ozgcc2dxutils__OzgCCAsyncImages__
+#define __ozgcc2dxutils__OzgCCAsyncImages__
 
 #include <vector.h>
 #include "cocos2d.h"
@@ -63,4 +63,4 @@ public:
     
 };
 
-#endif /* defined(__kippo_drawing_animal__OzgCCAsyncImages__) */
+#endif /* defined(__ozgcc2dxutils__OzgCCAsyncImages__) */

@@ -1,10 +1,3 @@
-//
-//  OzgCCUtils.cpp
-//  ozgccs
-//
-//  Created by 欧 志刚 on 13-4-2.
-//
-//
 
 #include "OzgCCUtils.h"
 

@@ -1,13 +1,6 @@
-//
-//  OzgCCButton.h
-//  ozggame_dusk_fantasy
-//
-//  Created by 欧 志刚 on 13-9-24.
-//
-//
 
-#ifndef __ozggame_dusk_fantasy__OzgCCButton__
-#define __ozggame_dusk_fantasy__OzgCCButton__
+#ifndef __ozgcc2dxutils__OzgCCButton__
+#define __ozgcc2dxutils__OzgCCButton__
 
 #include "cocos2d.h"
 
@@ -40,4 +33,4 @@ public:
     
 };
 
-#endif /* defined(__ozggame_dusk_fantasy__OzgCCButton__) */
+#endif /* defined(__ozgcc2dxutils__OzgCCButton__) */

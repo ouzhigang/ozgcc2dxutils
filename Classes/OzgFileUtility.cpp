@@ -1,10 +1,3 @@
-//
-// OzgFileUtility.cpp
-// ozgcpp
-//
-// Created by Tpwid on 13-4-27.
-// Copyright (c) 2013年 欧 志刚. All rights reserved.
-//
 
 #include "OzgFileUtility.h"
 

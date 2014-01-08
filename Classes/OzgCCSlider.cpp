@@ -1,10 +1,3 @@
-//
-//  OzgCCSlider.cpp
-//  ozggame_dusk_fantasy
-//
-//  Created by 欧 志刚 on 13-9-24.
-//
-//
 
 #include "OzgCCSlider.h"
 

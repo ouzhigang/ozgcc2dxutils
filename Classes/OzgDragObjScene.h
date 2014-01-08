@@ -1,10 +1,3 @@
-//
-//  OzgDragObjScene.h
-//  ozgcc2dxutils
-//
-//  Created by 欧 志刚 on 13-4-8.
-//
-//
 
 #ifndef __ozgcc2dxutils__OzgDragObjScene__
 #define __ozgcc2dxutils__OzgDragObjScene__

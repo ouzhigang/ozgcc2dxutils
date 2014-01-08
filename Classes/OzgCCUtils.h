@@ -1,14 +1,6 @@
-//
-//  OzgCCUtils.h
-//
-//  大部分为常用的静态方法
-//
-//  Created by 欧 志刚 on 13-4-2.
-//
-//
 
-#ifndef __ozgccs__OzgCCUtils__
-#define __ozgccs__OzgCCUtils__
+#ifndef __ozgcc2dxutils__OzgCCUtils__
+#define __ozgcc2dxutils__OzgCCUtils__
 
 #include "cocos2d.h"
 
@@ -84,4 +76,4 @@ public:
     
 };
 
-#endif /* defined(__ozgccs__OzgCCUtils__) */
+#endif /* defined(__ozgcc2dxutils__OzgCCUtils__) */

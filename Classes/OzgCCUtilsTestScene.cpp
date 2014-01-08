@@ -1,6 +1,5 @@
 #include "OzgCCUtilsTestScene.h"
 
-
 CCScene* OzgCCUtilsTestScene::scene()
 {
     CCScene *scene = CCScene::create();    

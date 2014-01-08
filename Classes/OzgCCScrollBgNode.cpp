@@ -1,10 +1,3 @@
-//
-//  OzgCCScrollBgNode.cpp
-//  OzgGameDuskFantasy
-//
-//  Created by 欧 志刚 on 13-10-22.
-//
-//
 
 #include "OzgCCScrollBgNode.h"
 

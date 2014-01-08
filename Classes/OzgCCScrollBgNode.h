@@ -1,16 +1,9 @@
-//
-//  OzgCCScrollBgNode.h
-//  OzgGameDuskFantasy
-//
-//  Created by 欧 志刚 on 13-10-22.
-//
-//
 
 //滚动背景
 //目前之支持左右滚动
 
-#ifndef __OzgGameDuskFantasy__OzgCCScrollBgNode__
-#define __OzgGameDuskFantasy__OzgCCScrollBgNode__
+#ifndef __ozgcc2dxutils__OzgCCScrollBgNode__
+#define __ozgcc2dxutils__OzgCCScrollBgNode__
 
 #include "cocos2d.h"
 #include <iostream>
@@ -33,4 +26,4 @@ public:
     
 };
 
-#endif /* defined(__OzgGameDuskFantasy__OzgCCScrollBgNode__) */
+#endif /* defined(__ozgcc2dxutils__OzgCCScrollBgNode__) */

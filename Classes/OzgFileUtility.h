@@ -1,10 +1,3 @@
-//
-// OzgFileUtility.h
-// ozgcpp
-//
-// Created by Tpwid on 13-4-27.
-// Copyright (c) 2013年 欧 志刚. All rights reserved.
-//
 
 /*
 demo
@@ -17,8 +10,8 @@ filesIterator++;
 }
 */
 
-#ifndef __ozgcpp__OzgFileUtility__
-#define __ozgcpp__OzgFileUtility__
+#ifndef __ozgcc2dxutils__OzgFileUtility__
+#define __ozgcc2dxutils__OzgFileUtility__
 
 #include "cocos2d.h"
 #include <iostream>
@@ -93,4 +86,4 @@ public:
 };
 
 
-#endif /* defined(__ozgcpp__OzgFileUtility__) */
+#endif /* defined(__ozgcc2dxutils__OzgFileUtility__) */

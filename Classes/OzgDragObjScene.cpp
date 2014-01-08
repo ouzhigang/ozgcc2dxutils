@@ -1,10 +1,3 @@
-//
-//  OzgDragObjScene.cpp
-//  ozgcc2dxutils
-//
-//  Created by 欧 志刚 on 13-4-8.
-//
-//
 
 #include "OzgDragObjScene.h"
 
