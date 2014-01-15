@@ -3,10 +3,10 @@
 
 #define STICK_BG_TAG 99999
 
-OzgJoystickLayer* OzgJoystickLayer::layer(CCPoint aPoint, float aRadius, CCSprite* aJsSprite, CCSprite* aJsBg, bool _isFollowRole)
+OzgJoystickLayer* OzgJoystickLayer::layerActivityJoystick(float aRadius, cocos2d::CCSprite *aJsSprite, cocos2d::CCSprite *aJsBg, bool aIsFollowRole)
 {
     OzgJoystickLayer *jstick = new OzgJoystickLayer();
-    if(jstick->initWithCenter(aPoint, aRadius, aJsSprite, aJsBg, _isFollowRole))
+    if(jstick->initWithCenter(CCPointZero, aRadius, aJsSprite, aJsBg, true, aIsFollowRole))
     {
         jstick->autorelease();
         return jstick;
@@ -15,16 +15,30 @@ OzgJoystickLayer* OzgJoystickLayer::layer(CCPoint aPoint, float aRadius, CCSprit
     return NULL;
 }
 
-OzgJoystickLayer* OzgJoystickLayer::initWithCenter(CCPoint aPoint, float aRadius, CCSprite* aJsSprite, CCSprite* aJsBg, bool _isFollowRole)
+OzgJoystickLayer* OzgJoystickLayer::layerStaticJoystick(CCPoint aPoint, float aRadius, CCSprite* aJsSprite, CCSprite* aJsBg, bool aIsFollowRole)
+{
+    OzgJoystickLayer *jstick = new OzgJoystickLayer();
+    if(jstick->initWithCenter(aPoint, aRadius, aJsSprite, aJsBg, false, aIsFollowRole))
+    {
+        jstick->autorelease();
+        return jstick;
+    }
+    CC_SAFE_DELETE(jstick);
+    return NULL;
+}
+
+OzgJoystickLayer* OzgJoystickLayer::initWithCenter(CCPoint aPoint, float aRadius, CCSprite* aJsSprite, CCSprite* aJsBg, bool aIsActivityJoystick, bool aIsFollowRole)
 {
     this->m_trigger = false; //没有触发摇杆
-    this->m_isFollowRole =_isFollowRole;
+    this->m_isFollowRole = aIsFollowRole;
     this->m_active = false;
     this->m_radius = aRadius;
-    if(!_isFollowRole)
+    if(!aIsFollowRole)
         this->m_centerPoint = aPoint;
     else
         this->m_centerPoint = ccp(0,0);
+    
+    this->m_activityJoystick = aIsActivityJoystick;
     
     this->m_currentPoint = this->m_centerPoint;
     this->m_jsSprite = aJsSprite;
@@ -35,6 +49,13 @@ OzgJoystickLayer* OzgJoystickLayer::initWithCenter(CCPoint aPoint, float aRadius
     this->addChild(this->m_jsSprite);
     if(this->m_isFollowRole)
         this->setVisible(false);
+    
+    //活动摇杆
+    if(this->m_activityJoystick)
+    {
+        this->m_jsSprite->setVisible(false);
+        aJsBg->setVisible(false);
+    }
     
     this->active(); //激活摇杆
     return this;
@@ -95,6 +116,19 @@ bool OzgJoystickLayer::ccTouchBegan(CCTouch* touch, CCEvent* event)
     this->setVisible(true);
     CCPoint touchPoint = touch->getLocation();
     
+    //活动摇杆
+    if(this->m_activityJoystick)
+    {
+        this->m_centerPoint = touchPoint;
+        
+        this->m_jsSprite->setVisible(true);
+        this->m_jsSprite->setPosition(this->m_centerPoint);
+        
+        CCSprite* aJsBg = (CCSprite*)this->getChildByTag(STICK_BG_TAG);
+        aJsBg->setPosition(this->m_centerPoint);
+        aJsBg->setVisible(true);
+    }
+    
     if(!this->m_isFollowRole)
     {
         if (ccpDistance(touchPoint, this->m_centerPoint) > this->m_radius)
@@ -133,6 +167,16 @@ void OzgJoystickLayer::ccTouchEnded(CCTouch* touch, CCEvent* event)
         this->setVisible(false);
     
     this->m_trigger = false; //松开时设置为没有触发摇杆
+    
+    //活动摇杆
+    if(this->m_activityJoystick)
+    {
+        this->m_jsSprite->setVisible(false);
+        
+        CCSprite* aJsBg = (CCSprite*)this->getChildByTag(STICK_BG_TAG);
+        aJsBg->setPosition(this->m_centerPoint);
+        aJsBg->setVisible(false);
+    }
 }
 
 

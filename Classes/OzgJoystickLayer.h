@@ -12,9 +12,10 @@
  return false;
  }
  
- CCSprite *spJoystick = CCSprite::create("CloseSelected.png");
- CCSprite *joystickBg = CCSprite::create("CloseSelected.png");
- OzgJoystickLayer *joystick = OzgJoystickLayer::layer(ccp(210.0f, 130.0f), 50.0f, spJoystick, joystickBg, false);
+ CCSprite *spJoystick = CCSprite::createWithSpriteFrameName("joystick01.png");
+ CCSprite *joystickBg = CCSprite::createWithSpriteFrameName("joystick02.png");
+ //        OzgJoystickLayer *joystick = OzgJoystickLayer::layerActivityJoystick(50, spJoystick, joystickBg, false);
+ OzgJoystickLayer *joystick = OzgJoystickLayer::layerStaticJoystick(ccp(200, 100), 50, spJoystick, joystickBg, false);
  joystick->setTag(1);
  this->addChild(joystick);
  
@@ -43,23 +44,21 @@ class OzgJoystickLayer : public CCLayer
 public:
     
     CCPoint m_centerPoint; //摇杆中心
-    
     CCPoint m_currentPoint; //摇杆当前位置
-    
     bool m_trigger; //是否正在触发摇杆
-    
     bool m_active; //是否激活摇杆
-    
     float m_radius; //摇杆半径
-    
     CCSprite* m_jsSprite;
+    
+    bool m_activityJoystick; //是否为活动摇杆
     
     bool m_isFollowRole; //是否跟随用户点击
     
     //初始化 aPoint是摇杆中心 aRadius是摇杆半径 aJsSprite是摇杆控制点 aJsBg是摇杆背景
-    static OzgJoystickLayer* layer(CCPoint aPoint, float aRadius, CCSprite* aJsSprite, CCSprite* aJsBg, bool _isFollowRole);
+    static OzgJoystickLayer* layerActivityJoystick(float aRadius, CCSprite* aJsSprite, CCSprite* aJsBg, bool aIsFollowRole);
+    static OzgJoystickLayer* layerStaticJoystick(CCPoint aPoint, float aRadius, CCSprite* aJsSprite, CCSprite* aJsBg, bool aIsFollowRole);
     
-    OzgJoystickLayer* initWithCenter(CCPoint aPoint, float aRadius, CCSprite* aJsSprite, CCSprite* aJsBg, bool _isFollowRole);
+    OzgJoystickLayer* initWithCenter(CCPoint aPoint, float aRadius, CCSprite* aJsSprite, CCSprite* aJsBg, bool aIsActivityJoystick, bool aIsFollowRole);
     
     //启动摇杆
     void active();
