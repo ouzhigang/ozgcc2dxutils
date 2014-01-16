@@ -1,4 +1,3 @@
-
 #ifndef __ozgcc2dxutils__OzgCCUtils__
 #define __ozgcc2dxutils__OzgCCUtils__
 
@@ -15,6 +14,20 @@ USING_NS_CC;
 using namespace std;
 
 static unsigned int OzgCCUtilsRandomSeed = 0;
+
+//string转数字类型
+/*
+ string str("00801");
+ cout << stringToNumber<int>(str) << endl;
+ */
+template <class Type>
+Type stringToNumber(const string& str)
+{
+    istringstream iss(str);
+    Type num;
+    iss >> num;
+    return num;
+}
 
 class OzgCCUtils
 {
