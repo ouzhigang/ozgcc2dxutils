@@ -1,5 +1,6 @@
-#ifndef __ozgcc2dxutils__OzgCCUtils__
-#define __ozgcc2dxutils__OzgCCUtils__
+
+#ifndef __ozgcc2dxutils__OzgCCUtility__
+#define __ozgcc2dxutils__OzgCCUtility__
 
 #include "cocos2d.h"
 
@@ -29,7 +30,7 @@ Type stringToNumber(const string& str)
     return num;
 }
 
-class OzgCCUtils
+class OzgCCUtility
 {
         
 public:
@@ -38,7 +39,7 @@ public:
     static void ccDrawSolidCircle(const CCPoint& center, float radius, unsigned int segments, ccColor4F color);
     
     static void clearAnimate(const char *plist); //清空plist生成的帧动画
-    static CCAnimate* createAnimate(const char *plist); //利用plist生成帧动画，plist结构在实现文件里面
+    static CCActionInterval* createAnimate(const char *plist); //利用plist生成帧动画，plist结构在实现文件里面
     
     static void plistPosition(CCNode *node, const char *plist); //使用plist来定位
     
@@ -87,6 +88,12 @@ public:
 	static string generalString(string &str); //通用的乱码解决方案
     static string generalString(const char* str);
     
+    static CCActionInterval* createAnimate(CCTexture2D* texture, int xNum, int yNum, vector<int> frameIndces, float delay, bool loops);
+    static CCActionInterval* createAnimate(const char* fileimage, int xNum, int yNum, vector<int> frameIndces, float delay, bool loops);
+    static CCArray* createSpriteFrames(CCTexture2D* texture, int xNum, int yNum);
+    static CCArray* createSpriteFrames(const char* fileimage, int xNum, int yNum);
+    
+    
 };
 
-#endif /* defined(__ozgcc2dxutils__OzgCCUtils__) */
+#endif /* defined(__ozgcc2dxutils__OzgCCUtility__) */

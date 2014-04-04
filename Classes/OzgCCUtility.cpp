@@ -1,7 +1,7 @@
 
-#include "OzgCCUtils.h"
+#include "OzgCCUtility.h"
 
-void OzgCCUtils::ccDrawSolidCircle(const CCPoint& center, float radius, unsigned int segments, ccColor4F color)
+void OzgCCUtility::ccDrawSolidCircle(const CCPoint& center, float radius, unsigned int segments, ccColor4F color)
 {
     const float coef = 2.0f * (float)M_PI / segments;
     CCPoint *vertices = (CCPoint*)calloc(segments + 1, sizeof(CCPoint));
@@ -18,7 +18,7 @@ void OzgCCUtils::ccDrawSolidCircle(const CCPoint& center, float radius, unsigned
     free(vertices);
 }
 
-void OzgCCUtils::clearAnimate(const char *plist)
+void OzgCCUtility::clearAnimate(const char *plist)
 {
     CCDictionary *root = CCDictionary::createWithContentsOfFile(plist);
     CCArray *frames = (CCArray*)root->objectForKey("frames");
@@ -31,7 +31,7 @@ void OzgCCUtils::clearAnimate(const char *plist)
     }
 }
 
-CCAnimate* OzgCCUtils::createAnimate(const char *plist)
+CCActionInterval* OzgCCUtility::createAnimate(const char *plist)
 {
     //plist的根节点为Root(CCDictionary)
     //plist的结构为frames(CCArray<CCString*>),loop(Number),delay(Number),rect(CCDictionary)里面有x(Number),y(Number),width(Number),height(Number)
@@ -65,13 +65,16 @@ CCAnimate* OzgCCUtils::createAnimate(const char *plist)
     }
     
     CCAnimation *animation = CCAnimation::createWithSpriteFrames(spriteFrames, delay);
-    animation->setLoops(loops);
     CCAnimate *animate = CCAnimate::create(animation);
     
-    return animate;
+    if(loops)
+        return CCRepeatForever::create(animate);
+    else
+        return animate;
+    
 }
 
-void OzgCCUtils::plistPosition(cocos2d::CCNode *node, const char *plist)
+void OzgCCUtility::plistPosition(cocos2d::CCNode *node, const char *plist)
 {
     CCDictionary *root = CCDictionary::createWithContentsOfFile(plist);
     float positionX = ((CCString*)root->objectForKey("position_x"))->floatValue();
@@ -81,7 +84,7 @@ void OzgCCUtils::plistPosition(cocos2d::CCNode *node, const char *plist)
     
 }
 
-unsigned int OzgCCUtils::rangeRand(unsigned int min, unsigned int max)
+unsigned int OzgCCUtility::rangeRand(unsigned int min, unsigned int max)
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
     unsigned int x = abs((rand() * time(NULL) % (max - min)));
@@ -94,7 +97,7 @@ unsigned int OzgCCUtils::rangeRand(unsigned int min, unsigned int max)
 #endif
 }
 
-void OzgCCUtils::randomSeed(int seed)
+void OzgCCUtility::randomSeed(int seed)
 {
     if(!seed)
         OzgCCUtilsRandomSeed = time(NULL);
@@ -102,13 +105,13 @@ void OzgCCUtils::randomSeed(int seed)
         OzgCCUtilsRandomSeed = seed;
 }
 
-float OzgCCUtils::randomFloat(float min, float max)
+float OzgCCUtility::randomFloat(float min, float max)
 {
     OzgCCUtilsRandomSeed = 214013 * OzgCCUtilsRandomSeed + 2531011;
     return min + (OzgCCUtilsRandomSeed >> 16) * (1.0f / 65535.0f) * (max - min);
 }
 
-int OzgCCUtils::atoi(const char *src)
+int OzgCCUtility::atoi(const char *src)
 {
     char flag = 0;
     int sum = 0;
@@ -145,7 +148,7 @@ int OzgCCUtils::atoi(const char *src)
         return sum;
 }
 
-char* OzgCCUtils::itoa(int num, char *str)
+char* OzgCCUtility::itoa(int num, char *str)
 {
     //char flag = 0;
     int i = 0, count = 0, j = 0;
@@ -209,12 +212,12 @@ char* OzgCCUtils::itoa(int num, char *str)
     return str;
 }
 
-char* OzgCCUtils::formatTime(const char *format)
+char* OzgCCUtility::formatTime(const char *format)
 {
-    return OzgCCUtils::formatTime(format, time(NULL));
+    return OzgCCUtility::formatTime(format, time(NULL));
 }
 
-char* OzgCCUtils::formatTime(const char *format, time_t utc_time)
+char* OzgCCUtility::formatTime(const char *format, time_t utc_time)
 {
     static char str_time[128];
     struct tm *local_time = NULL;
@@ -226,7 +229,7 @@ char* OzgCCUtils::formatTime(const char *format, time_t utc_time)
     return str_time;
 }
 
-char* OzgCCUtils::base64Encode(const char* data, int data_len)
+char* OzgCCUtility::base64Encode(const char* data, int data_len)
 {
     //int data_len = strlen(data);
     int prepare = 0;
@@ -292,13 +295,13 @@ char* OzgCCUtils::base64Encode(const char* data, int data_len)
     
 }
 
-char OzgCCUtils::base64FindPos(char ch)
+char OzgCCUtility::base64FindPos(char ch)
 {
     char *ptr = (char*)strrchr(OZG_BASE64, ch);//the last position (the only) in base[]
     return (ptr - OZG_BASE64);
 }
 
-char* OzgCCUtils::base64Decode(const char *data, int data_len)
+char* OzgCCUtility::base64Decode(const char *data, int data_len)
 {
     int ret_len = (data_len / 4) * 3;
     int equal_count = 0;
@@ -355,7 +358,7 @@ char* OzgCCUtils::base64Decode(const char *data, int data_len)
             {
                 break;
             }
-            prepare = (prepare << 6) | (OzgCCUtils::base64FindPos(data[tmp]));
+            prepare = (prepare << 6) | (OzgCCUtility::base64FindPos(data[tmp]));
             temp++;
             tmp++;
         }
@@ -374,7 +377,7 @@ char* OzgCCUtils::base64Decode(const char *data, int data_len)
     return ret;
 }
 
-float OzgCCUtils::roundf(float num)
+float OzgCCUtility::roundf(float num)
 {
     float num1 = num - floorf(num);
     float num2 = ceilf(num) - num;
@@ -418,7 +421,7 @@ int OzgCCUtils::GBKToUTF8(string &gbkStr, const char* toCode, const char* formCo
 }  
 #endif  
 
-string OzgCCUtils::generalString(std::string &str)  
+string OzgCCUtility::generalString(std::string &str)
 {  
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
 	OzgCCUtils::GBKToUTF8(str, "gbk", "utf-8"); //后面两个参数就默认了,免得后面再传参麻烦  
@@ -429,8 +432,72 @@ string OzgCCUtils::generalString(std::string &str)
 
 }
 
-string OzgCCUtils::generalString(const char* str)
+string OzgCCUtility::generalString(const char* str)
 {
     std::string s(str);
-    return OzgCCUtils::generalString(s);
+    return OzgCCUtility::generalString(s);
+}
+
+CCActionInterval* OzgCCUtility::createAnimate(cocos2d::CCTexture2D *texture, int xNum, int yNum, vector<int> frameIndces, float delay, bool loops)
+{
+    CCArray *frames = OzgCCUtility::createSpriteFrames(texture, xNum, yNum);
+    
+    CCArray *useFrames = CCArray::create();
+    for (int i = 0; i < (int)frameIndces.size(); i++)
+        useFrames->addObject(frames->objectAtIndex(frameIndces[i]));
+    
+    CCAnimation *animation = CCAnimation::createWithSpriteFrames(useFrames, delay);
+    animation->setLoops(loops);
+    CCAnimate *animate = CCAnimate::create(animation);
+    
+    if(loops)
+        return CCRepeatForever::create(animate);
+    else
+        return animate;
+}
+
+CCActionInterval* OzgCCUtility::createAnimate(const char *fileimage, int xNum, int yNum, vector<int> frameIndces, float delay, bool loops)
+{
+    CCArray *frames = OzgCCUtility::createSpriteFrames(fileimage, xNum, yNum);
+    
+    CCArray *useFrames = CCArray::create();
+    
+    for (int i = 0; i < (int)frameIndces.size(); i++)
+        useFrames->addObject(frames->objectAtIndex(frameIndces[i]));
+    
+    CCAnimation *animation = CCAnimation::createWithSpriteFrames(useFrames, delay);
+    CCAnimate *animate = CCAnimate::create(animation);
+    
+    if(loops)
+        return CCRepeatForever::create(animate);
+    else
+        return animate;
+}
+
+CCArray* OzgCCUtility::createSpriteFrames(cocos2d::CCTexture2D *texture, int xNum, int yNum)
+{
+    CCArray *frames = CCArray::create();
+    
+    float itemWidth = texture->getContentSizeInPixels().width / (float)xNum;
+    float itemHeight = texture->getContentSizeInPixels().height / (float)yNum;
+    
+    for (int i = 0; i < yNum; i++)
+    {
+        for (int j = 0; j < xNum; j++)
+        {
+//            CCLog("%f %f %f %f", (float)j * itemWidth, (float)i * itemHeight, itemWidth, itemHeight);
+            
+            CCSpriteFrame *s = CCSpriteFrame::createWithTexture(texture, CCRectMake((float)j * itemWidth, (float)i * itemHeight, itemWidth, itemHeight));
+            frames->addObject(s);
+            
+        }
+        
+    }
+    
+    return frames;
+}
+
+CCArray* OzgCCUtility::createSpriteFrames(const char *fileimage, int xNum, int yNum)
+{
+    return OzgCCUtility::createSpriteFrames(CCTextureCache::sharedTextureCache()->addImage(fileimage), xNum, yNum);
 }
