@@ -392,7 +392,7 @@ float OzgCCUtility::roundf(float num)
 //windows的乱码解决方案
 
 //字符转换，使cocos2d-x在win32平台支持中文显示  
-int OzgCCUtils::GBKToUTF8(string &gbkStr, const char* toCode, const char* formCode)  
+int OzgCCUtility::GBKToUTF8(string &gbkStr, const char* toCode, const char* formCode)  
 {  
     iconv_t iconvH;  
     iconvH = iconv_open(formCode, toCode);  
@@ -424,7 +424,7 @@ int OzgCCUtils::GBKToUTF8(string &gbkStr, const char* toCode, const char* formCo
 string OzgCCUtility::generalString(std::string &str)
 {  
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
-	OzgCCUtils::GBKToUTF8(str, "gbk", "utf-8"); //后面两个参数就默认了,免得后面再传参麻烦  
+	OzgCCUtility::GBKToUTF8(str, "gbk", "utf-8"); //后面两个参数就默认了,免得后面再传参麻烦  
 	return str;  
 #else 
 	return str;
