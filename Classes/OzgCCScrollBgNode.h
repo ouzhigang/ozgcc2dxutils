@@ -1,6 +1,6 @@
 
 //滚动背景
-//目前之支持左右滚动
+//目前只支持左右滚动
 
 #ifndef __ozgcc2dxutils__OzgCCScrollBgNode__
 #define __ozgcc2dxutils__OzgCCScrollBgNode__
