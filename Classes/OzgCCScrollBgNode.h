@@ -5,23 +5,24 @@
 #ifndef __ozgcc2dxutils__OzgCCScrollBgNode__
 #define __ozgcc2dxutils__OzgCCScrollBgNode__
 
-#include "cocos2d.h"
 #include <iostream>
+#include "cocos2d.h"
 
-USING_NS_CC;
-using namespace std;
-
-class OzgCCScrollBgNode : public CCNode
+class OzgCCScrollBgNode : public cocos2d::CCParallaxNode
 {
 private:
-    CCSprite* m_bgSprite1;
-    CCSprite* m_bgSprite2;
-    string m_bg;
+    
+	std::vector<std::string> m_bgList;
     
 public:
+    
+	float m_scrollSpeed;
+    
     virtual ~OzgCCScrollBgNode();
-    bool init(const char* bg);
-    static OzgCCScrollBgNode* create(const char* bg);
+    
+	bool init(std::vector<std::string> bgList);
+	static OzgCCScrollBgNode* create(std::vector<std::string> bgList);
+    
     void update(float delta);
     
 };
