@@ -60,7 +60,7 @@ void OzgCCAsyncImages::imagesAsyncProgress(CCObject* obj)
     
     //CCLog("已完成:%i%%", loaded);
     
-    if(loaded == 100)
+    if(loaded >= 100)
     {
         (this->m_pObj->*this->m_completeSelector)();
         
