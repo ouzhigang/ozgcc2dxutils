@@ -56,7 +56,7 @@ const char* OzgCCAsyncImages::imagesGetPath()
 void OzgCCAsyncImages::imagesAsyncProgress(CCObject* obj)
 {
     this->m_imagesLoaded++;
-    int loaded = (int)((float)this->m_imagesLoaded / (float)this->m_currImageFiles.capacity() * 100.0f);
+    int loaded = (int)((float)this->m_imagesLoaded / (float)this->m_currImageFiles.size() * 100.0f);
     
     //CCLog("已完成:%i%%", loaded);
     
